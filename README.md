@@ -16,16 +16,13 @@ Node js mid test
 To run project locally install latest stable nodejs version. 
 You need to have mongodb running on your local machine if you want to use local database and make NODE_ENV to local
 
-After installation clone project, enter its directory and run 
+Command for installation
 
-```sh 
-npm install
 ```
-
-and then run server
-
-```sh
-npm start
+$ git clone https://github.com/RicaJerry/Node-mid.git
+$ cd ../path/to/the/file
+$ npm install
+$ npm start
 ```
 
 if you want to run the test install dev dependencies
@@ -36,4 +33,11 @@ npm install --dev
 and run the test
 ```
 npm test
+```
+### Run by docker
+
+Launch docker on your machine
+
+```sh
+docker-compose up
 ```
