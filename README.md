@@ -1,9 +1,14 @@
+### Descrition
+
+Node js mid test
+
 ### Technologies
 
 * [NodeJS]
 * [Express]
 * [Mongoose]
 * [MongoDB]
+* [Jest]
 * [Docker]
 
 ### Installation
@@ -21,4 +26,14 @@ and then run server
 
 ```sh
 npm start
+```
+
+if you want to run the test install dev dependencies
+
+```sh
+npm install --dev
+```
+and run the test
+```
+npm test
 ```
