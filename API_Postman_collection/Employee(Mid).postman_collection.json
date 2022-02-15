@@ -1,0 +1,172 @@
+{
+	"info": {
+		"_postman_id": "1dd66b8b-f534-4eb3-b0ae-d23e5d0b40bc",
+		"name": "Employee(Mid)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ping",
+			"request": {
+				"method": "HEAD",
+				"header": [],
+				"url": {
+					"raw": "{{basic_url}}/api/ping/",
+					"host": [
+						"{{basic_url}}"
+					],
+					"path": [
+						"api",
+						"ping",
+						""
+					]
+				},
+				"description": "Tester la requête en voyant si le header \"X-TEST-PING\" renvoie \"pong"
+			},
+			"response": []
+		},
+		{
+			"name": "Create employee",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n    \"id\": \"14500\",\n    \"name\": \"Ranaivoson\",\n    \"firstName\": \"\",\n    \"dateCreated\": \"2020-09-22T10:00:00\",\n    \"department\": \"informatique\",\n    \"salary\": 4000,\n    \"active\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{basic_url}}/api/employee/",
+					"host": [
+						"{{basic_url}}"
+					],
+					"path": [
+						"api",
+						"employee",
+						""
+					]
+				},
+				"description": "**Créer un employé**\n\nLes clés suivant sont présent dans la base:\n\n*   **id** (String) identifiant de l'employé (obligatoire)\n*   **name** (String) : nom (obligatoire)\n*   **firstname** (String) :prénom ( par défaut vide si ce n'est pas renseigné )\n*   **dateCreated** (String) :date d'entrée ( par défaut la date de création si ce n'est pas renseigné )\n*   **department** (String): département\n    \n\nLes clés suivants sont facultatif:\n\n*   **salary (**Number) : salaire\n*   **active** (bool): actif ou pas (par défaut true si ce n'est pas renseigné)"
+			},
+			"response": []
+		},
+		{
+			"name": "Update employee by Id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n    \"name\": \"Ranaivoson 3\",\n    \"firstName\": \"update 5\",\n    \"dateCreated\": \"2020-09-22T10:00:00\",\n    \"department\": \"informatique\",\n    \"salary\": 5570.67\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{basic_url}}/api/employee/update/14502",
+					"host": [
+						"{{basic_url}}"
+					],
+					"path": [
+						"api",
+						"employee",
+						"update",
+						"14502"
+					]
+				},
+				"description": "**Modification d'un employé par rapport à sont identifiant**\n\nComporte url params qui est l'identifiant (id) de l'employé\n\nDans le body seul les clés présent sont modifié dans la BDD"
+			},
+			"response": []
+		},
+		{
+			"name": "Get list employee",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{basic_url}}/api/employee/?date=2020-09-24",
+					"host": [
+						"{{basic_url}}"
+					],
+					"path": [
+						"api",
+						"employee",
+						""
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "2020-09-24"
+						}
+					]
+				},
+				"description": "**Liste des employées**.\n\nPour avoir la liste global des employés ou sans filtre, ne pas ajouter de paramètre ou mettre vide le params.\n\nPour avoir la liste filtré ajouter le nom de département dans paramètre en utilisant la clé \"**date**\" de format String\n\n*   Si date invalide réponse 400 et message date invalide\n*   Si date params vide tous la réponse serait la liste de tous les employés"
+			},
+			"response": []
+		},
+		{
+			"name": "Checkin",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"employeeId\": \"14502\",\n    \"comment\": \"comment\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{basic_url}}/api/employee/checkin",
+					"host": [
+						"{{basic_url}}"
+					],
+					"path": [
+						"api",
+						"employee",
+						"checkin"
+					]
+				},
+				"description": "*   **employeeId** obligatoire dans le body\n    \n\nLorsque l'endpoint est appelé la différence entre checkin et checkout est de 0 ( clé \"diffInOutTime\" )"
+			},
+			"response": []
+		},
+		{
+			"name": "checkout",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"employeeId\": \"14502\",\n    \"comment\": \"comment\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{basic_url}}/api/employee/checkout",
+					"host": [
+						"{{basic_url}}"
+					],
+					"path": [
+						"api",
+						"employee",
+						"checkout"
+					]
+				},
+				"description": "*   **employeeId** obligatoire dans le body sinon la réponse est un status 400\n    \n\nLorsque le endpoint est appelé la différence entre checkin et checkout est calculé et envoyé dans la BDD. Clé \" diffInOutTime\""
+			},
+			"response": []
+		}
+	]
+}
